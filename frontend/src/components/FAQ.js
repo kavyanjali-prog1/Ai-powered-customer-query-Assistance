@@ -8,7 +8,7 @@ const FAQ = () => {
   const [flippedIndex, setFlippedIndex] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/faqs')
+    axios.get('https://ai-powered-customer-query-assistance.onrender.com/api/faqs')
       .then(res => setFaqs(res.data))
       .catch(err => {
         console.error('Error fetching FAQs:', err);
