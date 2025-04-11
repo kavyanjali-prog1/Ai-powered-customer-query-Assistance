@@ -1,0 +1,43 @@
+:root {
+  --gradient: linear-gradient(90deg, #6a11cb, #2575fc);
+  --text-gradient: linear-gradient(90deg, #a18cd1, #fbc2eb);
+
+  --bg-dark: #0d0d0d;
+  --text-dark: #ffffff;
+
+  --bg-bw: #ffffff;
+  --text-bw: #111111;
+  --bw-gradient: #333333;
+  --bw-text-gradient: linear-gradient(90deg, #333333, #777777);
+
+  --border-radius: 12px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+  transition: background 0.3s, color 0.3s;
+}
+
+body.bw {
+  background-color: var(--bg-bw);
+  color: var(--text-bw);
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 2rem;
+}
+
+#theme-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: inherit;
+}
