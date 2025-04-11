@@ -9,10 +9,8 @@ const ChatWindow = () => {
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
-    const messagesContainer = messagesEndRef.current?.parentElement;
-    if (messagesContainer) {
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
+    const container = messagesEndRef.current?.parentElement;
+    if (container) container.scrollTop = container.scrollHeight;
   };
 
   useEffect(() => {
@@ -23,7 +21,7 @@ const ChatWindow = () => {
     if (!userInput.trim()) return;
 
     const userMessage = { sender: 'user', text: userInput };
-    setMessages(prev => [...prev, userMessage]);
+    setMessages((prev) => [...prev, userMessage]);
     setUserInput('');
     setLoading(true);
 
@@ -33,11 +31,14 @@ const ChatWindow = () => {
       });
 
       const botMessage = { sender: 'bot', text: res.data.reply };
-      setMessages(prev => [...prev, botMessage]);
+      setMessages((prev) => [...prev, botMessage]);
     } catch (err) {
-      setMessages(prev => [
+      setMessages((prev) => [
         ...prev,
-        { sender: 'bot', text: '⚠️ Error connecting to server. Please try again later.' }
+        {
+          sender: 'bot',
+          text: '⚠️ Error connecting to server. Please try again later.',
+        },
       ]);
     } finally {
       setLoading(false);
@@ -48,15 +49,14 @@ const ChatWindow = () => {
     if (e.key === 'Enter') sendMessage();
   };
 
-  const handleClearChat = () => {
-    setMessages([]);
-  };
+  const handleClearChat = () => setMessages([]);
 
   return (
+    <div class="chat-wrapper">
+
     <div className="chat-window">
-      <div style={{ textAlign: 'center', marginBottom: '10px' }}>
-        <img src="/chatbot.gif" alt="bot icon" style={{ width: 60 }} />
-        <h2 style={{ marginTop: '10px', fontSize:'2rem',color: 'var(--accent)' }}>Your product assistant</h2>
+      <div className="chat-header">
+        <h2>HOW CAN I ASSIST YOU</h2>
       </div>
 
       <div className="messages">
@@ -65,21 +65,27 @@ const ChatWindow = () => {
             {msg.text}
           </div>
         ))}
-        {loading && <div className="message bot">Typing...</div>}
+        {loading && (
+          <div className="message bot typing-indicator">
+            <span></span><span></span><span></span>
+          </div>
+        )}
         <div ref={messagesEndRef} />
       </div>
 
       <div className="input-area">
         <input
           type="text"
-          placeholder="Which product are you searching for..."
+          placeholder="start searching for..."
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
           onKeyDown={handleKeyPress}
         />
         <button onClick={sendMessage}>Send</button>
-        <button onClick={handleClearChat} className="clear-btn">Clear Chat</button>
+        <button onClick={handleClearChat} className="clear-btn">Clear</button>
       </div>
+    </div>
+    <img src="/chatwindowbot.png" alt="Cute Robot" class="chatbot-peek" />
     </div>
   );
 };
