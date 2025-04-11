@@ -1,0 +1,126 @@
+.faq-section {
+  padding: 6rem 1rem 4rem;
+  text-align: center;
+}
+
+.faq-heading {
+  font-size: 2.5rem;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(90deg, #6f00ff, #8c00ff, #b700ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.faq-heading::after {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 80%;
+  margin: 0.5rem auto 0;
+  background: linear-gradient(90deg, #6f00ff, #8c00ff, #b700ff);
+  border-radius: 2px;
+  transition: background 0.3s ease;
+}
+
+.bw .faq-heading {
+  background: none;
+  color: #222;
+  -webkit-text-fill-color: initial;
+}
+
+.bw .faq-heading::after {
+  background: #333;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  padding: 0 2rem;
+}
+
+@media (max-width: 992px) {
+  .faq-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.faq-card {
+  perspective: 1000px;
+  cursor: pointer;
+  animation: floatCard 4s ease-in-out infinite;
+  transition: transform 0.3s ease-in-out;
+  margin: 0.5rem;
+  border-radius: 16px;
+}
+
+.faq-inner {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.faq-card.flipped .faq-inner {
+  transform: rotateY(180deg);
+}
+
+.faq-front,
+.faq-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 12px 24px rgba(105, 36, 225, 0.25), 0 6px 10px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  text-align: center;
+  z-index: 1;
+}
+
+.faq-front {
+  background: var(--card-color);
+  color: var(--accent);
+  border: 2px solid var(--border-color);
+}
+
+.faq-back {
+  background: var(--card-color);
+  color: var(--text-secondary);
+  transform: rotateY(180deg);
+  border: 2px solid var(--accent);
+  z-index: 2;
+}
+
+.faq-error,
+.faq-loading {
+  color: var(--accent);
+  text-align: center;
+  margin: 2rem auto;
+}
+
+@keyframes floatCard {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
