@@ -12,7 +12,7 @@ app.use(express.json());
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// product data
+// product  data
 let products = [
   // Smartphones
   {
