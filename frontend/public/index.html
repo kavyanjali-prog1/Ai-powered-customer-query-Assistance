@@ -8,10 +8,15 @@
     <meta name="description" content="Web site created using create-react-app" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
     <title>ShopMateAI</title>
 
     <style> 
+      html {
+        scroll-behavior: smooth;
+      }
+
       :root {
         --gradient: linear-gradient(90deg, #6a11cb, #2575fc);
         --text-gradient: linear-gradient(90deg, #a18cd1, #fbc2eb);
@@ -42,8 +47,36 @@
 
       header {
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-end; /* Align header elements to the right */
+        align-items: center;
         padding: 1rem 2rem;
+        background: var(--gradient);
+        font-family: 'Orbitron', sans-serif; /* Apply Orbitron font */
+      }
+
+      header .logo {
+        font-size: 1.8rem;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-right: auto; /* Push the logo to the left side */
+      }
+
+      header nav {
+        display: flex;
+        gap: 2rem;
+      }
+
+      header nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+
+      header nav a:hover {
+        color: #ff7e5f; /* Soft hover color */
       }
 
       #theme-toggle {
@@ -53,6 +86,7 @@
         font-size: 1.5rem;
         color: white;
         transition: color 0.3s ease;
+        margin-left: 1.5rem;
       }
 
       body.bw #theme-toggle {
@@ -64,7 +98,7 @@
         flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
-        padding: 5rem 5% 5rem; /* ⬅️ Added top & bottom space */
+        padding: 5rem 5% 5rem;
         gap: 2rem;
         animation: slideIn 1.5s ease forwards;
       }
@@ -81,12 +115,13 @@
       }
 
       .hero-left {
-        flex: 1 1 400px;
-        max-width: 600px;
+        flex: 1 1 500px;
+        max-width: 800px;
+        font-family: 'Orbitron', sans-serif;
       }
 
       .hero-left h1 {
-        font-size: 2.8rem;
+        font-size: 2.7rem;
         line-height: 1.2;
         margin-bottom: 1rem;
       }
@@ -223,6 +258,13 @@
   </head>
   <body>
     <header>
+      <div class="logo" onclick="location.reload()">AI POWERED CUSTOMER QUERY ASSISTANT</div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#ChatWindow">Get Started</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Support</a>
+      </nav>
       <button id="theme-toggle" aria-label="Toggle Theme">
         <span id="theme-icon">☀️</span>
       </button>
@@ -240,7 +282,9 @@
           <li>Boost conversion rates with recommendations</li>
           <li>Custom shopping assistance in chat</li>
         </ul>
-        <button class="get-started">Get Started</button>
+        <button class="get-started" onclick="document.getElementById('ChatWindow').scrollIntoView({ behavior: 'smooth' });">
+          Get Started
+        </button>
       </section>
 
       <section class="hero-right">
